@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "codepipeline" {
-  bucket = "codepipeline-${var.www_domain}"
+  bucket = "${var.bucket_prefix}codepipeline-${var.www_domain}"
   acl    = "private"
 }
 

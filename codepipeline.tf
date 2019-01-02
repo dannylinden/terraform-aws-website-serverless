@@ -4,7 +4,7 @@ resource "aws_codepipeline" "codepipeline" {
   role_arn = "${aws_iam_role.codepipeline_role.arn}"
 
   artifact_store = {
-    location = "codepipeline-${var.www_domain}"
+    location = "${aws_s3_bucket.codepipeline.bucket}"
     type     = "S3"
   }
 
