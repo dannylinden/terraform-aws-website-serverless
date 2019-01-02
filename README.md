@@ -2,6 +2,8 @@ AWS Serverless Infrastructure for Static Websites
 
 Creates a static website Infrastructure on a domain hosted on S3 and delivered by CloudFront over HTTPS with Route53 managing DNS.
 
+Terraform Registry: [https://registry.terraform.io/modules/dannylinden/website-serverless/aws/](https://registry.terraform.io/modules/dannylinden/website-serverless/aws/)
+
 ## Features
 
 * Redirects the following to `https://www.example.com`
@@ -30,8 +32,11 @@ Creates a static website Infrastructure on a domain hosted on S3 and delivered b
 
 To validate the SSL certificate you need to be able to recieve Emails to:
 
-* webmaster@
-* admin@
+* admin@example.com
+* administrator@example.com
+* postmaster@example.com
+* hostmaster@example.com
+* webmaster@example.com
 
 Email-Adress 
 
@@ -61,6 +66,14 @@ module "hugo-site" {
   ssl-validation = "E-MAIL" How to validate
   ssh_pub_key = "" /* Path to the SSH Pub key for CodeCommit authentification*/
   bucket_prefix = "web-" /* Prefix for S3 Buckets*/
+}
+
+output "nameservers" {
+  value = "${module.hugo-site.nameservers}"
+}
+
+output "git_remote_url" {
+  value = "${module.hugo-site.git_remote_url}"
 }
 
 ```
