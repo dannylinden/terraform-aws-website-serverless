@@ -4,7 +4,7 @@ output "nameservers" {
 
 }
 
-output "git remote url" {
+output "git_remote_url" {
   value = "${replace(aws_codecommit_repository.git_repository.clone_url_ssh,
     "ssh://",
     "ssh://${aws_iam_user_ssh_key.user.ssh_public_key_id}@")}"
