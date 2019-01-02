@@ -1,4 +1,4 @@
-AWS Serverless Infrastructure for Static Websites
+# AWS Serverless Infrastructure for Static Website based on [Hugo](https://gohugo.io/)
 
 Creates a static website Infrastructure on a domain hosted on S3 and delivered by CloudFront over HTTPS with Route53 managing DNS.
 
@@ -60,12 +60,12 @@ provider "aws" {
 }
 
 module "hugo-site" {
-  source = "https://github.com/dannylinden/terraform-aws-website-serverless"
+  source = "dannylinden/website-serverless/aws"
   www_domain   = "www.example.com" /* Your domain here */
   root_domain = "example.com" /* Your root domain here */
-  ssl-validation = "E-MAIL" How to validate
-  ssh_pub_key = "" /* Path to the SSH Pub key for CodeCommit authentification*/
-  bucket_prefix = "web-" /* Prefix for S3 Buckets*/
+  ssl-validation = "EMAIL" /* How to validate */
+  ssh_pub_key = "~/.ssh/id_rsa.pub" /* Path to the SSH Pub key for CodeCommit authentification */
+  bucket_prefix = "" /* Prefix for S3 Buckets */
 }
 
 output "nameservers" {
