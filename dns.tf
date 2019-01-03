@@ -5,9 +5,9 @@ resource "aws_route53_zone" "zone" {
 // Workaround to get lower NS ttl for root domain
 resource "aws_route53_record" "ns" {
   zone_id = "${aws_route53_zone.zone.zone_id}"
-  name    = "${var.root_domain}}"
+  name    = "${var.root_domain}"
   type    = "NS"
-  ttl     = "300"
+  ttl     = "86400"
   records = [
     "${aws_route53_zone.zone.name_servers.0}",
     "${aws_route53_zone.zone.name_servers.1}",
